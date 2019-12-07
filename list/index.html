@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <meta charset="UTF-8" />
+  <title>List Demo</title>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <md-content style="height: 500px;" md-theme="altTheme">
+    <div ng-controller="ListCtrl" layout="column" flex layout-fill ng-cloak>
+      <md-toolbar md-scroll-shrink>
+        <div class="md-toolbar-tools">Pizza</div>
+      </md-toolbar>
+
+      <section>
+        <md-subheader class="md-primary">Single Action Checkboxes</md-subheader>
+        <md-list layout-padding>
+          <md-list-item ng-repeat="topping in toppings">
+            <p ng-bind="topping.name"></p>
+            <md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>
+          </md-list-item>
+        </md-list>
+      </section>
+
+      <section>
+        <md-subheader class="md-warn">Read Message</md-subheader>
+        <md-list layout="column" layout-padding>
+          <md-list-item class="md-3-line" ng-repeat="message in messages">
+            <div class="md-list-item-text">
+              <h3>{{$index+1}}. {{message.what}}</h3>
+              <h4>{{message.who}}</h4>
+              <p>
+                {{message.notes}}
+              </p>
+              <md-button class="md-secondary" ng-click="onDel($index)">Delete</md-button>
+            </div>     
+          </md-list-item>
+        </md-list>
+        
+        
+      </section>      
+          
+    </div>
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
+    
+    <script type="text/javascript" src="app.js"></script>
+  </md-content>
+</body>
+</html>
