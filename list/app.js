@@ -79,23 +79,23 @@ angular.module('myApp', ['ngMaterial'])
           when: '3:08PM',
           notes: " I'll be in your neighborhood doing errands"
         },
-        {
-          face : imagePath,
-          what: 'J. ',
-          who: 'Min Li Chan',
-          when: '3:08PM',
-          notes: " I'll be in your neighborhood doing errands"
-        },
-        {
-          face : imagePath,
-          what: 'K. ',
-          who: 'Min Li Chan',
-          when: '3:08PM',
-          notes: " I'll be in your neighborhood doing errands"
-        },
     ];
     
     $scope.onDel = function(index) {
         $scope.messages.splice(index, 1)
+    };
+
+    $scope.onAdd = function() {
+      var newMessage = $scope.messageText;
+      if (newMessage) {
+        $scope.messages.push(
+          {
+            face : imagePath,
+            what : newMessage,
+            who  : "anonymous",
+            when : "3:08PM",
+            note : "new!"
+        })
+      }
     };
 });
