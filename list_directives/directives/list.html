@@ -1,0 +1,33 @@
+<div>
+  <md-toolbar md-scroll-shrink>
+    <div class="md-toolbar-tools">Pizza</div>
+  </md-toolbar>
+
+  <section>
+    <md-subheader class="md-primary">Single Action Checkboxes</md-subheader>
+    <md-list layout-padding>
+      <md-list-item ng-repeat="topping in toppings">
+        <p ng-bind="topping.name"></p>
+        <md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>
+      </md-list-item>
+    </md-list>
+  </section>
+
+  <section>
+    <md-subheader class="md-warn">Read Message</md-subheader>
+    <md-list layout="column" layout-padding>
+      <md-list-item class="md-3-line" ng-repeat="message in messages">
+        <div class="md-list-item-text">
+          <h3>{{$index+1}}. {{message.what}}</h3>
+          <h4>{{message.who}}</h4>
+          <p>
+            {{message.notes}}
+          </p>
+          <md-button class="md-secondary" ng-click="onDel($index)">Delete</md-button>
+        </div>
+      </md-list-item>
+      <h3 ng-if="messages.length<=0">No messages!</h3>
+    </md-list>
+    
+  </section>
+</div>
