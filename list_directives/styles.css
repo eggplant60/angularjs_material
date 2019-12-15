@@ -1,10 +1,17 @@
-.subheaderdemoBasicUsage .face {
-  border-radius: 30px;
-  border: 1px solid #ddd;
-  width: 48px;
-  margin: 16px; }
+md-content {
+  height: 600px;
+  max-width:  800px;
+  padding-bottom: 0px;
+}
 
-.md-button {
-  color : red;
+.md-subheader {
+  background: skyblue;
+  width: 100%;
+}
+
+.md-button.delete {
+  border-radius: 10px;
+  background: #FF3333;
+  color : #DDD;
 }
   

@@ -1,10 +1,11 @@
-/* angular.module('myWgForm', [])
+//angular.module('app.directives.form', [])
+angular.module('app')
 .directive('wgForm', wgForm);
- */
 
-export function wgForm() {
+function wgForm() {
+
     return {
         restrict: 'E',
-        templeteUrl: 'form.html'
-    }
-};
+        templateUrl: 'directives/form.html'
+    };
+}

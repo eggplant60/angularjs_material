@@ -1,10 +1,10 @@
-/* angular.module('myWgList', [])
+//angular.module('app.directives.list', [])
+angular.module('app')
 .directive('wgList', wgList);
- */
 
-export function wgList() {
+function wgList() {
     return {
         restrict: 'E',
-        templeteUrl: 'list.html'
-    }
-};
+        templateUrl: 'directives/list.html'
+    };
+}

@@ -1,9 +1,12 @@
-// angular.module('myListCtrl', [])
-// .controller('ListCtrl', ListCtrl);
+//angular.module('app.controllers.main', [])
+angular.module('app')
+.controller('ListCtrl', ['$log', ListCtrl]);
 
-export function ListCtrl($scope, $mdDialog) {
+function ListCtrl($log) {
+    var vm = this;
+    $log.debug('debug in ListCtrl');
 
-    $scope.toppings = [
+    vm.toppings = [
         {name: 'Pepperoni',     wanted: true},
         {name: 'Sausage',       wanted: false},
         {name: 'Black Olives',  wanted: true},
@@ -13,7 +16,7 @@ export function ListCtrl($scope, $mdDialog) {
     ];
 
     var imagePath = 'img/list/60.jpeg';
-    $scope.messages = [
+    vm.messages = [
         {
           face : imagePath,
           what: 'A. ',
@@ -79,21 +82,23 @@ export function ListCtrl($scope, $mdDialog) {
         },
     ];
     
-    $scope.onDel = function(index) {
-        $scope.messages.splice(index, 1)
+    vm.onDel = function(index) {
+        $log.debug('on Del!');
+        vm.messages.splice(index, 1);
     };
 
-    $scope.onAdd = function() {
-      var newMessage = $scope.messageText;
+    vm.onAdd = function() {
+      $log.debug('on Add!');
+      var newMessage = vm.messageText;
       if (newMessage) {
-        $scope.messages.push(
+        vm.messages.push(
           {
             face : imagePath,
             what : newMessage,
             who  : "anonymous",
             when : "3:08PM",
             note : "new!"
-        })
+        });
       }
     };
-};
+}
