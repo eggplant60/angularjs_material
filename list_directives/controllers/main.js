@@ -1,8 +1,8 @@
 //angular.module('app.controllers.main', [])
 angular.module('app')
-.controller('ListCtrl', ['$log', ListCtrl]);
+.controller('ListCtrl', ['$log', 'ApiService', ListCtrl]);
 
-function ListCtrl($log) {
+function ListCtrl($log, ApiService) {
     var vm = this;
     $log.debug('debug in ListCtrl');
 
@@ -15,73 +15,13 @@ function ListCtrl($log) {
         {name: 'shrimp',        wanted: false},
     ];
 
-    var imagePath = 'img/list/60.jpeg';
-    vm.messages = [
-        {
-          face : imagePath,
-          what: 'A. ',
-          who: 'Min Li Chan',
-          when: '3:08PM',
-          notes: " I'll be in your neighborhood doing errands"
-        },
-        {
-          face : imagePath,
-          what: 'B. ',
-          who: 'Min Li Chan',
-          when: '3:08PM',
-          notes: " I'll be in your neighborhood doing errands"
-        },
-        {
-          face : imagePath,
-          what: 'C. ',
-          who: 'Min Li Chan',
-          when: '3:08PM',
-          notes: " I'll be in your neighborhood doing errands"
-        },
-        {
-          face : imagePath,
-          what: 'D. ',
-          who: 'Min Li Chan',
-          when: '3:08PM',
-          notes: " I'll be in your neighborhood doing errands"
-        },
-        {
-          face : imagePath,
-          what: 'E. ',
-          who: 'Min Li Chan',
-          when: '3:08PM',
-          notes: " I'll be in your neighborhood doing errands"
-        },
-        {
-          face : imagePath,
-          what: 'F. ',
-          who: 'Min Li Chan',
-          when: '3:08PM',
-          notes: " I'll be in your neighborhood doing errands"
-        },
-        {
-          face : imagePath,
-          what: 'G. ',
-          who: 'Min Li Chan',
-          when: '3:08PM',
-          notes: " I'll be in your neighborhood doing errands"
-        },
-        {
-          face : imagePath,
-          what: 'H. ',
-          who: 'Min Li Chan',
-          when: '3:08PM',
-          notes: " I'll be in your neighborhood doing errands"
-        },
-        {
-          face : imagePath,
-          what: 'I. ',
-          who: 'Min Li Chan',
-          when: '3:08PM',
-          notes: " I'll be in your neighborhood doing errands"
-        },
-    ];
-    
+    //vm.messages = ApiService.download();
+    var promise = ApiService.download();
+    promise.then(function(r){
+      vm.messages = r;
+    });
+    $log.debug(vm.messages);
+
     vm.onDel = function(index) {
         $log.debug('on Del!');
         vm.messages.splice(index, 1);
@@ -91,14 +31,7 @@ function ListCtrl($log) {
       $log.debug('on Add!');
       var newMessage = vm.messageText;
       if (newMessage) {
-        vm.messages.push(
-          {
-            face : imagePath,
-            what : newMessage,
-            who  : "anonymous",
-            when : "3:08PM",
-            note : "new!"
-        });
+        vm.messages.push(ApiService.new(newMessage));
       }
     };
 }
